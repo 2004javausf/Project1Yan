@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Employee Page</title>
+  <link rel="stylesheet" type="text/css" href="employee.css">
+</head>
+
+
+<body>
+
+  <div align="center">
+    <h1>Welcome to the Tuition Reimbursement Application Page</h1>
+  </div>
+  <div>
+    <input type="text" id="apIDInput" placeholder="Enter Application ID" />
+    <input type="submit" value="Get Application Info" id="apSubmitGet" />
+    <h2 id="apID"></h2>
+    <h3 id="apAmount"></h3>
+    <h4 id="apStatus"></h4>
+    <h4 id="proveAmount"></h4>
+</div>
+
+<div>
+    <form enctype="application/json" method="POST" id="apForm">
+        Event Date: <input type="datetime-local" name="eventDate">
+        <br>
+        Event Location: <input type="text" name="eventLocation" placeholder="Address:">
+        <br>
+        Event Description: 
+        <br>
+        <textarea placeholder="Please write a short message introducing:" name="eventDescription" rows="10" cols="80"></textarea>
+        <br>
+        Event Cost: <input type="number" name="eventCost">
+        <br>
+        Grading Formats:
+        <br>
+        <input type="radio" name="gradingFormat" value="ABCDF"> A,A-,B+,B,B-,C+,C,C-,D+,D-,F<br>
+        <input type="radio" name="gradingFormat" value="%"> 100% - 0%<br>
+        <input type="radio" name="gradingFormat" value="P/F"> Pass/Fail<br>
+        Type of Event:
+        <br>
+        <select name="typeofEvent">
+          <option disabled selected> -- select an option -- </option>
+          <option value="University Courses">University Courses</option>
+          <option value="Seminars">Seminars</option>
+          <option value="Certification Preparation Classes">Certification Preparation Classes</option>
+          <option value="Certification">Certification</option>
+          <option value="Technical Training">Technical Training</option>
+          <option value="Other">Other</option>
+        </select>
+        <br>
+        Work-related Justification:
+        <br>
+        <textarea placeholder="Please write a short message introducing:" name="justification" rows="10" cols="80"></textarea>
+        <br>
+        <!-- Event-related Attachments:
+        <br>
+        <input type="file" name="attachment" accept="image/png, image/jpeg, .pdf, .txt, .doc">
+        <br>
+        Approval Emails(optional):
+        <br>
+        <input type="file" name="approval" accept=".msg">
+        <br> -->
+        <input type="submit" name="submitme" id="apFormSubmit">
+    </form>
+
+</div>
+<script type="text/javascript" src="employee.js"></script>
+
+</body>
+
+</html>
