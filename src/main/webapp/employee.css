@@ -1,10 +1,10 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: cornsilk
   }
   
-  * {
+* {
     box-sizing: border-box;
+    background-color: cornsilk
   }
 
   

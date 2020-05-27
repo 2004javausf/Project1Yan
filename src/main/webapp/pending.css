@@ -1,0 +1,76 @@
+
+input:hover {
+    background: #c8c8c8;
+      }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: cornsilk
+}
+      
+* {
+  box-sizing: border-box;
+  
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+    
+
+.app-title {
+  text-align: center;
+  font-weight: normal;
+  font-size: 1.6rem;
+}
+
+.application {
+  max-width: 650px;
+  padding: 20px;
+  margin: 30px auto;
+  background-color: #FFF;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, .1);
+  overflow: hidden;
+}
+
+p {
+  background-color: #FFF;
+}
+
+.application h4 {
+  margin: 0 0 6px 0;
+}
+
+.employee-name {
+  font-size: 2rem;
+  font-weight: normal;
+  margin: 0 0 1rem 0;
+}
+
+.status {
+  font-size: .9rem;
+  color: #888;
+  vertical-align: middle;
+}
+
+.typeofevent {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  left: 17px;
+  font-size: .85rem;
+  line-height: 1.5;
+}
+
+.footer {
+  font-size: 1rem;
+  color: #888;
+  text-align: center;
+  margin: 0;
+}

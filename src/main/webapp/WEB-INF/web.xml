@@ -29,4 +29,14 @@
     <servlet-name>ApplicationServlet</servlet-name>
     <url-pattern>/application</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SupervisorServlet</display-name>
+    <servlet-name>SupervisorServlet</servlet-name>
+    <servlet-class>com.revature.servlet.SupervisorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SupervisorServlet</servlet-name>
+    <url-pattern>/supervisor</url-pattern>
+  </servlet-mapping>
 </web-app>

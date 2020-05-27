@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +18,14 @@ public class ApplicationDAOImpl {
 	public static ConnFactory cf = ConnFactory.getInstance();
 	
 	//get list
-	public static List<Application> getInfo() throws SQLException{
+	public List<Application> getSuperInfo() throws SQLException{
 		List<Application> appList = new ArrayList<Application>();
 		Connection conn = cf.getConnection();
-		String sql = "SELECT * FROM APPLICATION";
+		String sql = "SELECT * FROM APPLICATION WHERE SUBSTATUS='SUPERVISOR'";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
-			appList.add(new Application(rs.getInt(1), 0, sql, null, sql, sql, null, sql, sql, sql, null, null, sql, sql, null, null));
+			appList.add(new Application(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getString(6), rs.getDouble(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getBlob(11), rs.getBlob(12), rs.getString(13), rs.getString(14), rs.getDouble(15), rs.getTimestamp(16)));
 		}
 		return appList;
 		
@@ -32,7 +33,6 @@ public class ApplicationDAOImpl {
 	
 	//insert row
 	public void insertApp(Application app, Account employee) throws SQLException{
-		
 		Connection conn = cf.getConnection();
 		//CALCULATE APPLYAMOUNT
 		Double cost = app.getEventCost();
@@ -73,6 +73,15 @@ public class ApplicationDAOImpl {
 		ps.setDouble(12,amount);
 		ps.setTimestamp(13,new Timestamp(System.currentTimeMillis()));
 		ps.executeUpdate();
+	}
+	
+	//updated row
+	public void updateApp(Application app) throws SQLException{
+		Connection conn = cf.getConnection();
+		Statement stmt = conn.createStatement();
+		int appid = app.getAppId();
+		String sql = "UPDATE APPLICATION SET SUBSTATUS = 'DEPARTMENT' WHERE APPLICATION_ID = "+appid+"";
+		stmt.executeQuery(sql); 
 	}
 
 }

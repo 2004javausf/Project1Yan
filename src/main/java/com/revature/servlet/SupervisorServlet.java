@@ -11,38 +11,50 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.dao.GetInfoImpl;
-import com.revature.dao.VGDAOImpl;
+import com.revature.beans.Application;
+import com.revature.dao.ApplicationDAOImpl;
 
 
-public class GetInfoServlet extends HttpServlet {
+public class SupervisorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		System.out.println("in doGet");
 		ObjectMapper mapper = new ObjectMapper();
+		ApplicationDAOImpl apdi = new ApplicationDAOImpl();
 		PrintWriter pw = response.getWriter();
-		String infoJSON;
+		String apJSON;
 		try {
-			infoJSON = mapper.writeValueAsString(GetInfoImpl.getInfo());
+			apJSON = mapper.writeValueAsString(apdi);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
-			pw.print(infoJSON);
+			pw.print(apJSON);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		pw.flush();
 	}
-
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		System.out.println("in SupervisorServelt doPost");
+		Application app=null;
+		ObjectMapper mapper=new ObjectMapper();
+		app=mapper.readValue(request.getInputStream(), Application.class);
+		System.out.println(app);		
+		
+		ApplicationDAOImpl adi=new ApplicationDAOImpl();
+		try {
+			adi.updateApp(app);
+			PrintWriter pw=response.getWriter();
+			pw.write("<h3>Supervisor approved Reimbursement Form</h3>");
+			pw.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 }
