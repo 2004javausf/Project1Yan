@@ -10,10 +10,53 @@ body {
       
 * {
   box-sizing: border-box;
-  
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  border-left: 15px solid rgb(103, 111, 122);
+  background-color: rgb(217, 224, 233);
+}
+
+input[type=text] {
+  width: 30%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background:white;
+  border:2px solid #556677;
+  border-radius:4px;
+}
+
+input:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+textarea {
+  border-radius:10px;
+  border:3px solid #556677;
+  background:white;
+}
+
+textarea:focus {
+  background-color: #ddd;
+  outline: none;
 }
 
 input[type=button], input[type=submit], input[type=reset] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.mybutton {
   background-color: #4CAF50;
   border: none;
   color: white;
@@ -55,7 +98,7 @@ p {
 
 .status {
   font-size: .9rem;
-  color: #888;
+  color: red;
   vertical-align: middle;
 }
 

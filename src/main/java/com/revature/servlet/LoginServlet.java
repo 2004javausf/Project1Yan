@@ -16,7 +16,8 @@ import com.revature.dao.LoginDAOImpl;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private LoginDAOImpl loginDao;
-	static Account employee = new Account();
+	//saved login in account info in the "Account employee"
+	public static Account employee = new Account();
 	
 	public void init() {
 		loginDao = new LoginDAOImpl();
@@ -24,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		System.out.println("in doPost");
+		System.out.println("in LoginServlet doPost");
 		PrintWriter out= response.getWriter();
 		
         String username = request.getParameter("username");
@@ -37,6 +38,7 @@ public class LoginServlet extends HttpServlet {
 			employee = loginDao.getAccount(account);
 			type = employee.getType();
 			System.out.println(type);
+			System.out.println(employee.getUsername());
 			
 			if (type.equals("employee")) {
 			    HttpSession session = request.getSession();

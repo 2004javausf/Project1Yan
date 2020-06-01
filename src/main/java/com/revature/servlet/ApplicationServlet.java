@@ -20,6 +20,7 @@ public class ApplicationServlet extends HttpServlet {
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("in EmployeeServelt doPost");
+		PrintWriter out= response.getWriter();
 		Application app=null;
 		ObjectMapper mapper=new ObjectMapper();
 		app=mapper.readValue(request.getInputStream(), Application.class);
@@ -35,7 +36,9 @@ public class ApplicationServlet extends HttpServlet {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			out.print("Sorry, please input works less than 4 row!");
 		}
+		out.close();
 
 	}
 

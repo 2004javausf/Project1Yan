@@ -10,16 +10,16 @@ body {
   
   /* Add padding to containers */
   .container {
-    padding: 16px;
-    background-color: white;
+    width: 80%;
+    margin: 0 auto;
   }
   
   /* Full-width input fields */
 
 
 
-  input[type=text] {
-    width: 25%;
+  input {
+    width: 30%;
     padding: 15px;
     margin: 5px 0 22px 0;
     display: inline-block;
@@ -29,7 +29,7 @@ body {
     border-radius:4px;
   }
   
-  input[type=text]:focus {
+  input:focus {
     background-color: #ddd;
     outline: none;
   }
@@ -37,9 +37,20 @@ body {
   textarea {
     border-radius:10px;
     border:3px solid #556677;
+    background:white;
   }
 
   textarea:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+
+  select {
+    border:3px solid #556677;
+    background:white;
+  }
+
+  select:focus {
     background-color: #ddd;
     outline: none;
   }
@@ -58,8 +69,9 @@ body {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 200px;
     opacity: 0.9;
+    text-align: center;
   }
   
   #apFormSubmit:hover {

@@ -15,22 +15,19 @@ import com.revature.beans.Account;
 import com.revature.beans.Application;
 import com.revature.dao.ApplicationDAOImpl;
 
-
-public class SupervisorServlet extends HttpServlet {
-
+public class SupervisorServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Account employee = LoginServlet.employee;
 
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("in Supervisor doGet");
-		System.out.println(employee.getUsername());
+		System.out.println("in SupervisorServlet2 doGet");
 		ObjectMapper mapper = new ObjectMapper();
 		ApplicationDAOImpl apdi = new ApplicationDAOImpl();
 		PrintWriter pw = response.getWriter();
 		String apJSON;
 		try {
-			apJSON = mapper.writeValueAsString(apdi.getSuperInfo(employee));
+			apJSON = mapper.writeValueAsString(apdi.getBencoInfo(employee));
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			pw.print(apJSON);
@@ -43,20 +40,21 @@ public class SupervisorServlet extends HttpServlet {
 		}
 		pw.flush();
 	}
-	
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("in SupervisorServelt doPost");
+		System.out.println("in SuperviosrServlet2 doPost");
 		Application app=null;
 		ObjectMapper mapper=new ObjectMapper();
 		app=mapper.readValue(request.getInputStream(), Application.class);
 		System.out.println(app);		
 		String a = app.getSubStatus();
 		ApplicationDAOImpl adi=new ApplicationDAOImpl();	
-		if (a.equals("Approve")) {
+		if (a.equals("Final Prove")) {
 			try {
-				adi.updateApp(app);
+				adi.updateApp9(app);
 				PrintWriter pw=response.getWriter();
-				pw.write("<h3>Supervisor approved Reimbursement Form</h3>");
+				pw.write("<h3>Supervisor Final Approved the Tuition Reimbursement</h3>");
 				pw.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -65,9 +63,9 @@ public class SupervisorServlet extends HttpServlet {
 		}
 		else {
 			try {
-				adi.updateApp2(app);
+				adi.updateApp10(app);
 				PrintWriter pw=response.getWriter();
-				pw.write("<h3>Supervisor Denied Reimbursement Form</h3>");
+				pw.write("<h3>Supervisor Final Denied the Tuition Reimbursement</h3>");
 				pw.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -75,4 +73,5 @@ public class SupervisorServlet extends HttpServlet {
 			}
 		}
 	}
+
 }

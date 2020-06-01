@@ -15,16 +15,13 @@ import com.revature.beans.Account;
 import com.revature.beans.Application;
 import com.revature.dao.ApplicationDAOImpl;
 
-
-public class SupervisorServlet extends HttpServlet {
-
+public class BencoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Account employee = LoginServlet.employee;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("in Supervisor doGet");
-		System.out.println(employee.getUsername());
+		System.out.println("in Benco doGet");
 		ObjectMapper mapper = new ObjectMapper();
 		ApplicationDAOImpl apdi = new ApplicationDAOImpl();
 		PrintWriter pw = response.getWriter();
@@ -45,7 +42,7 @@ public class SupervisorServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("in SupervisorServelt doPost");
+		System.out.println("in Benco doPost");
 		Application app=null;
 		ObjectMapper mapper=new ObjectMapper();
 		app=mapper.readValue(request.getInputStream(), Application.class);
@@ -54,9 +51,9 @@ public class SupervisorServlet extends HttpServlet {
 		ApplicationDAOImpl adi=new ApplicationDAOImpl();	
 		if (a.equals("Approve")) {
 			try {
-				adi.updateApp(app);
+				adi.updateApp4(app);
 				PrintWriter pw=response.getWriter();
-				pw.write("<h3>Supervisor approved Reimbursement Form</h3>");
+				pw.write("<h3>Department head approved Reimbursement Form</h3>");
 				pw.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -67,7 +64,7 @@ public class SupervisorServlet extends HttpServlet {
 			try {
 				adi.updateApp2(app);
 				PrintWriter pw=response.getWriter();
-				pw.write("<h3>Supervisor Denied Reimbursement Form</h3>");
+				pw.write("<h3>Department head denied Reimbursement Form</h3>");
 				pw.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

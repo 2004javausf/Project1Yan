@@ -1,14 +1,84 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
 
-  <div align="center">
-    <h1>Benco have logined successfully</h1>
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Benefits Coordinator</title>
+  <link rel="stylesheet" type="text/css" href="pending.css">
+</head>
+
+<body>
+  <div style="text-align:right;">
+    <a href="LogoutServlet">Logout</a> |
+    <hr>
   </div>
+
+  <div style="text-align:center;">
+    <h1>Welcome to Benefits Coordinator Page</h1>
+  </div>
+
+  <div class="container">
+    <div>
+      <input type="button" value="Check Awarded Reimbursment" id="showAward">
+      <div id="AwardWrite"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div>
+      <input type="button" value="Check Pending Reimbursment Applications" id="checkApplication">
+      <div id="app"></div>
+    </div>
+  
+    <div>
+      <form enctype="application/json" method="POST" id="approveForm">
+        <input type="number" name="appId" placeholder="Application ID: ">
+        <input type="number" name="provedAmount" placeholder="Proved Amount $">
+        <input type="submit" id="approveApplication" name="subStatus" value="Approve">
+        <br>
+        <textarea placeholder="Please give reasons if the amount larger than the amount available..." name="denyInfo" rows="10" cols="80"  maxlength="200"></textarea> 
+      </form>
+    </div>
+  
+    <div>
+      <form enctype="application/json" method="POST" id="denyForm">
+        <input type="number" name="appId" placeholder="Application ID: ">
+        <input type="submit" id="denyApplication" name="subStatus" value="Deny">
+        <br>
+        <textarea placeholder="Please give reasons for denying..." name="denyInfo" rows="10" cols="80"  maxlength="200"></textarea>   
+      </form>
+    </div>
+  </div>
+
+  <div style="padding: 50px; display: inline-block;"></div>
+
+  <div class="container">
+    <div>
+      <input type="button" value="Check Submitted Grade" id="showingGrade">
+      <div id="gradeWrite"></div>
+    </div>
+  
+    <div>
+      <form enctype="application/json" method="POST" id="finalProveForm">
+        <input type="number" name="appId" placeholder="Application ID: ">
+        <input type="submit" id="finalProve" name="subStatus" value="Final Prove">
+      </form>
+    </div>
+  
+    <div>
+      <form enctype="application/json" method="POST" id="finalDenyForm">
+        <input type="number" name="appId" placeholder="Application ID: ">
+        <input type="submit" id="finalDeny" name="subStatus" value="Final Deny">
+        <br>
+        <textarea placeholder="Please give reasons for denying..." name="denyInfo" rows="10" cols="80"  maxlength="200"></textarea> 
+      </form>
+    </div>
+  </div>
+
+  
+
+  <script type="text/javascript" src="benco.js"></script>
+
 
 </body>
 </html>

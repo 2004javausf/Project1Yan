@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Employee profile</title>
+  <link rel="stylesheet" type="text/css" href="pending.css">
+</head>
+
+<body>
+  <div style="text-align:right;">
+    <a href="LogoutServlet">Logout</a> |
+    <hr>
+  </div>
+
+  <div style="text-align:center;">
+    <h1>Welcome to Employee profile Page</h1>
+  </div>
+
+  <div class="container">
+    <div>
+      <input type="button" value="Check Pending Reimbursment Applications" id="checkApplication">
+      <div id="app"></div>
+    </div>
+  
+    <div>
+      <form enctype="application/json" method="POST" id="cancelForm">
+        <input type="number" name="appId" placeholder="Application ID: ">
+        <input type="submit" id="cancelApplication" name="subStatus" value="Cancel">
+      </form>
+    </div>
+  
+    <div>
+      <form enctype="application/json" method="POST" id="confirmForm">
+        <input type="number" name="appId" placeholder="Application ID: ">
+        <input type="submit" id="confirmApplication" name="subStatus" value="Confirm">
+        <br>
+        <textarea placeholder="Please additional information for the denied application..." name="additionalInfo" rows="10" cols="80" maxlength="200"></textarea>   
+      </form>
+    </div>
+  </div>
+  
+  <div style="padding: 50px; display: inline-block;"></div>
+
+  <div class="container">
+    <div>
+      <input type="button" value="Check Proved Reimbursment Applications" id="provedApplication">
+      <div id="approved"></div>
+    </div>
+  
+    <div>
+      <form enctype="application/json" method="POST" id="gradeForm">
+        Grade Submit:
+        <br>
+        <input type="number" name="appId" placeholder="Application ID: ">
+        <input type="text" name="grade" placeholder="Grade:">
+        <input type="submit" id="submitgrade" name="subStatus" value="Submit Grade">
+      </form>
+    </div>
+  
+    <div>
+      <form enctype="application/json" method="POST" id="presentationForm">
+        Presentation Submit:
+        <br>
+        <input type="number" name="appId" placeholder="Application ID: ">
+        <input type="text" name="presentation" placeholder="Presentation Links:">
+        <input type="submit" id="submitpresentation" name="subStatus" value="Submit Presentation">
+      </form>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="profile.js"></script>
+
+</body>
+
+</html>

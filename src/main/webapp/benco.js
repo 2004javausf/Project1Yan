@@ -3,9 +3,10 @@ window.onload= function(){
     document.getElementById("checkApplication").addEventListener("click",getApp,false);
     document.getElementById("approveApplication").addEventListener("click",postAprove,false);
     document.getElementById("denyApplication").addEventListener("click",postDeny,false);
-    document.getElementById("showingPresentation").addEventListener("click",getApp2,false);
+    document.getElementById("showingGrade").addEventListener("click",getApp2,false);
     document.getElementById("finalProve").addEventListener("click",finalApprove,false);
     document.getElementById("finalDeny").addEventListener("click",finalDeny,false);
+    document.getElementById("showAward").addEventListener("click",getApp3,false);
 }
 
 function getApp(){
@@ -20,7 +21,7 @@ function getApp(){
             loadApp(app);
         }
     }
-    xhr.open("GET","http://localhost:8080/Project1Yan/supervisor",true);
+    xhr.open("GET","http://localhost:8080/Project1Yan/benco",true);
     xhr.send();
 }
 
@@ -59,7 +60,7 @@ function postAprove(){
             console.log(xhr.responseText);
         }
     }
-    xhr.open("POST", "http://localhost:8080/Project1Yan/supervisor",true);
+    xhr.open("POST", "http://localhost:8080/Project1Yan/benco",true);
     var payload=jsonBuilder1();
     xhr.send(payload);
 }
@@ -73,7 +74,7 @@ function postDeny(){
             console.log(xhr.responseText);
         }
     }
-    xhr.open("POST", "http://localhost:8080/Project1Yan/supervisor",true);
+    xhr.open("POST", "http://localhost:8080/Project1Yan/benco",true);
     var payload=jsonBuilder2();
     xhr.send(payload);
 }
@@ -101,7 +102,7 @@ function convertedDate(date1){
 }
 
 
-function superTemplate(app1) {
+function bencoTemplate(app1) {
     return `
         <div class="application">
           <h2 class = "employee-name">${app1.employeeName}<span class = "status">(${ugent(convertedDate(app1.eventDate))})</span></h2>
@@ -119,19 +120,17 @@ function superTemplate(app1) {
         `
 }
 
-
-
 function loadApp(app){
     document.getElementById("app").innerHTML = `
       <h1 class="app-title">Applications (${Object.keys(app).length} results)</h1>
-      ${app.map(superTemplate).join('')}
+      ${app.map(bencoTemplate).join('')}
       <p class="footer">There ${Object.keys(app).length} applications were added recently. Check back soon for updates.</p>
     `
 }
 
-//showing submitted presentation
+//showing submitted grade
 function getApp2(){
-    console.log("in get supervisor Application2");
+    console.log("in get Application2");
     var xhr= new XMLHttpRequest();
     xhr.onreadystatechange= function(){
         console.log("in ORSC");
@@ -142,12 +141,12 @@ function getApp2(){
             loadApp2(app);
         }
     }
-    xhr.open("GET","http://localhost:8080/Project1Yan/supervisor2",true);
+    xhr.open("GET","http://localhost:8080/Project1Yan/benco2",true);
     xhr.send();
 }
 
 function loadApp2(app){
-    document.getElementById("presentationWrite").innerHTML = `
+    document.getElementById("gradeWrite").innerHTML = `
       <h1 class="app-title">Proved Tuition Reimbursement (${Object.keys(app).length} results)</h1>
       ${app.map(bencoTemplate2).join('')}
     `
@@ -156,22 +155,21 @@ function loadApp2(app){
 function bencoTemplate2(app1) {
     return `
         <div class="application">
-          <h2 class = "employee-name">${app1.status}</h2>
+          <h2 class = "employee-name">${app1.status}<span class = "status" style="color:red;"><strong>(Grade: <strong>${app1.grade})</span></h2>
           <p><strong>Application ID: <strong> ${app1.appId} </p>
           <p><strong>Event Date: <strong> ${convertedDate(app1.eventDate)} </p>
-          <p><strong>Reimbursment Form Submit Date: <strong> ${convertedDate(app1.appTime)} </p>
           <p><strong>Event Description: <strong> ${app1.eventDescription} </p>
           <p><strong>Event Cost: $<strong> ${app1.eventCost} </p>
           <p><strong>Reimbursment Proved Amount: $<strong> ${app1.provedAmount} </p>
           <p><strong>Grading Format: <strong> ${app1.gradingFormat} </p>
-          <p><strong>Presentation Link: <strong> ${app1.presentation} </p>
+          <p><strong>Reimbursment Form Submit Date: <strong> ${convertedDate(app1.appTime)} </p>
         </div>
         `
 }
 
 //final prove
 function finalApprove(){
-    console.log("in supervisor final Approve");
+    console.log("in final Approve");
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange= function(){
         console.log("in ORSC " + xhr.readyState);
@@ -179,7 +177,7 @@ function finalApprove(){
             console.log(xhr.responseText);
         }
     }
-    xhr.open("POST", "http://localhost:8080/Project1Yan/supervisor2",true);
+    xhr.open("POST", "http://localhost:8080/Project1Yan/benco2",true);
     var payload=jsonBuilder3();
     xhr.send(payload);
 }
@@ -199,7 +197,7 @@ function jsonBuilder3(){
 
 //final deny
 function finalDeny(){
-    console.log("in supervisor final Deny");
+    console.log("in final Deny");
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange= function(){
         console.log("in ORSC " + xhr.readyState);
@@ -207,7 +205,7 @@ function finalDeny(){
             console.log(xhr.responseText);
         }
     }
-    xhr.open("POST", "http://localhost:8080/Project1Yan/supervisor2",true);
+    xhr.open("POST", "http://localhost:8080/Project1Yan/benco2",true);
     var payload=jsonBuilder4();
     xhr.send(payload);
 }
@@ -223,5 +221,38 @@ function jsonBuilder4(){
     var json = JSON.stringify(obj);
     console.log(json);
     return json;
+}
+
+//showing Awarded Tuition Reimbursement 
+function getApp3(){
+    console.log("in get Awarded Reimbursement");
+    var xhr= new XMLHttpRequest();
+    xhr.onreadystatechange= function(){
+        console.log("in ORSC");
+        console.log(xhr.readyState);
+        if(xhr.readyState== 4 && xhr.status==200){
+            console.log(xhr.responseText);
+            var app= JSON.parse(xhr.responseText);
+            loadApp3(app);
+        }
+    }
+    xhr.open("GET","http://localhost:8080/Project1Yan/benco3",true);
+    xhr.send();
+}
+
+function loadApp3(app){
+    document.getElementById("AwardWrite").innerHTML = `
+      <h1 class="app-title">There are ${Object.keys(app).length} employees have applied Tuition Reimbursement.</h1>
+      ${app.map(bencoTemplate3).join('')}
+    `
+}
+
+function bencoTemplate3(app1) {
+    return `
+        <div class="application">
+          <h2 class = "employee-name">${app1.name}<span class = "status" style="color:red;"><strong>(Account ID: <strong>${app1.id})</span></h2>
+          <p><strong>Awarded Reimburstments: <strong> ${app1.awarded} </p>
+        </div>
+        `
 }
 

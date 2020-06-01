@@ -24,6 +24,11 @@ public class Application implements Serializable{
 	private String subStatus;
 	private Double appAmount;
 	private Timestamp appTime;
+	private String grade;
+	private String denyInfo;
+	private String additionalInfo;
+	private Double provedAmount;
+	private String presentation;
 	
 	public Application() {
 		super();
@@ -32,7 +37,8 @@ public class Application implements Serializable{
 
 	public Application(int appId, int employeeId, String employeeName, Date eventDate, String eventLocation,
 			String eventDescription, Double eventCost, String gradingFormat, String typeofEvent, String justification,
-			Blob attachment, Blob approval, String status, String subStatus, Double appAmount, Timestamp appTime) {
+			Blob attachment, Blob approval, String status, String subStatus, Double appAmount, Timestamp appTime,
+			String grade, String denyInfo, String additionalInfo, Double provedAmount, String presentation) {
 		super();
 		this.appId = appId;
 		this.employeeId = employeeId;
@@ -50,6 +56,11 @@ public class Application implements Serializable{
 		this.subStatus = subStatus;
 		this.appAmount = appAmount;
 		this.appTime = appTime;
+		this.grade = grade;
+		this.denyInfo = denyInfo;
+		this.additionalInfo = additionalInfo;
+		this.provedAmount = provedAmount;
+		this.presentation = presentation;
 	}
 
 	public int getAppId() {
@@ -180,8 +191,44 @@ public class Application implements Serializable{
 		this.appTime = appTime;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	public String getDenyInfo() {
+		return denyInfo;
+	}
+
+	public void setDenyInfo(String denyInfo) {
+		this.denyInfo = denyInfo;
+	}
+
+	public String getAdditionalInfo() {
+		return additionalInfo;
+	}
+
+	public void setAdditionalInfo(String additionalInfo) {
+		this.additionalInfo = additionalInfo;
+	}
+
+	public Double getProvedAmount() {
+		return provedAmount;
+	}
+
+	public void setProvedAmount(Double provedAmount) {
+		this.provedAmount = provedAmount;
+	}
+
+	public String getPresentation() {
+		return presentation;
+	}
+
+	public void setPresentation(String presentation) {
+		this.presentation = presentation;
 	}
 
 	@Override
@@ -191,10 +238,9 @@ public class Application implements Serializable{
 				+ eventDescription + ", eventCost=" + eventCost + ", gradingFormat=" + gradingFormat + ", typeofEvent="
 				+ typeofEvent + ", justification=" + justification + ", attachment=" + attachment + ", approval="
 				+ approval + ", status=" + status + ", subStatus=" + subStatus + ", appAmount=" + appAmount
-				+ ", appTime=" + appTime + "]";
+				+ ", appTime=" + appTime + ", grade=" + grade + ", denyInfo=" + denyInfo + ", additionalInfo="
+				+ additionalInfo + ", provedAmount=" + provedAmount + ", presentation=" + presentation + "]";
 	}
 
 	
-	
-
 }

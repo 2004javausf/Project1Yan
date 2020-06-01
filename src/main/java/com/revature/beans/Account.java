@@ -10,18 +10,20 @@ public class Account implements Serializable{
 	private String password;
 	private String name;
 	private String type;
+	private Double awarded;
 	
 	public Account() {
 		super();
 	}
 
-	public Account(int id, String username, String password, String name, String type) {
+	public Account(int id, String username, String password, String name, String type, Double awarded) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.name = name;
 		this.type = type;
+		this.awarded = awarded;
 	}
 
 	public int getId() {
@@ -64,11 +66,21 @@ public class Account implements Serializable{
 		this.type = type;
 	}
 
+	public Double getAwarded() {
+		return awarded;
+	}
+
+	public void setAwarded(Double awarded) {
+		this.awarded = awarded;
+	}
+
 	@Override
 	public String toString() {
 		return "Account [id=" + id + ", username=" + username + ", password=" + password + ", name=" + name + ", type="
-				+ type + "]";
+				+ type + ", awarded=" + awarded + "]";
 	}
+
+	
 	
 	
 	

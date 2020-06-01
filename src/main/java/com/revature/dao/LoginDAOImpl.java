@@ -26,7 +26,7 @@ public class LoginDAOImpl {
 	    //status = rs.next();
 	    //return status;
 	    while(rs.next()) {
-	    	employee = new Account(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
+	    	employee = new Account(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getDouble(6));
 	    }
 	    return employee;
 		
